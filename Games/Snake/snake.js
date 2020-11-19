@@ -1,9 +1,9 @@
 const board_border = 'black';
-const board_background = "white";
-const snake_col = 'chartreuse';
-const snake_border = 'black';
-const food_col = 'red';
-const food_border = 'black';
+const board_background = "black";
+const snake_col = 'white';
+const snake_border = 'chartreuse';
+const food_col = 'white';
+const food_border = 'red';
 
 let dx = 10;
 let dy = 0;
@@ -23,6 +23,7 @@ let snake = [
 
 const board = document.getElementById("snakeBoard");
 const context = board.getContext("2d");
+
 main();
 
 generateFood();

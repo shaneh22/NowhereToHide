@@ -30,10 +30,12 @@ const renderBoard = function() {
     })
 
     game.onWin(function() {
+        document.querySelector('.checker').style.color = "green";
         document.querySelector('.checker').innerHTML = "YOU WIN!!! YOU FOUND THE 256 TILE!"
     })
 
     game.onLose(function() {
+        document.querySelector('.checker').style.color = "red";
         document.querySelector('.checker').innerHTML = "You Lose! You should try again by hitting the 'Reset Game' button."
     })
 
