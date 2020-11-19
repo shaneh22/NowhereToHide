@@ -4,9 +4,11 @@ let voteButtonsActive = false;
 let createPeopleBox = (x) =>{
     let box = $(`<div class = "box" id= "${x}"></div>`);
     let field = $(`<div class = "field level"></div>`);
-    let p = $(`<p class = "level-item pr-0 mr-0" id = "#p${x}">Player ${x}</p>`);
-    let btns = $('<div class = "buttons level-right pl-0 ml-0"></div>');
+    let p = $(`<p id = "#p${x}">Player ${x}</p>`);
+    let btns = $('<div class = "buttons level-right"></div>');
     field.append(p);
+    field.append($(`<button class = "button is-small" style = "visibility:hidden"></button>`));
+    field.append($(`<button class = "button is-small" style = "visibility:hidden"></button>`));
     box.append(field);
     field.append(btns);
     box.on('click', ()=>{

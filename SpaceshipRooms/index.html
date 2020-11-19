@@ -11,17 +11,29 @@
 
     <style>
         body{
-            background-image: url('space2.gif');
+            background-image: url('space3.gif');
             background-size: cover;
+        }
+        #backgroundbox{
+            height: 700px;
+            width: 900px;
+            margin: 100px;
+        }
+        #display{
+            height: 660px;
         }
     </style>
 
     <body>
         <section class="hero is-fullheight">
-            
+            <div class="container">
+                <div class="has-background-grey box" id= "backgroundbox">
+                    <div class="has-background-grey-light box" id="display"></div>
+                </div>
+            </div>
         </section>
         <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="scripts.js"></script>
+        <script src="rooms.js"></script>
     </body>
 
 </html>
