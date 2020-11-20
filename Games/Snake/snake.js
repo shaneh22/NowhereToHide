@@ -24,6 +24,8 @@ let snake = [
 const board = document.getElementById("snakeBoard");
 const context = board.getContext("2d");
 
+const winningScore = 100;
+
 main();
 
 generateFood();
@@ -33,6 +35,12 @@ document.addEventListener("keydown", controls)
 function main() {
 
     if(gameOver()) {
+        if(score < winningScore){
+            $('p').html('Ouch! You failed your task.');
+            $('p').addClass('has-text-danger');
+            $('#score').addClass('has-text-danger');
+            //send failed result to backend
+        }
         return;
     }
 
@@ -75,6 +83,7 @@ function movement() {
     const is_eaten = snake[0].x === foodX && snake[0].y === foodY;
     if(is_eaten) {
         score += 10;
+        hasWon();
         document.getElementById('score').innerHTML = score;
         generateFood()
     } else {
@@ -134,9 +143,18 @@ function generateFood() {
     snake.forEach(function eaten(part) {
         const is_eaten = part.x == foodX && part.y == foodY;
         if(is_eaten) {
-            generateFood()
+            generateFood();
         }
     });
+}
+
+function hasWon() {
+    if(score == winningScore){
+        $('p').html('The cafeteria is a lot cleaner and your snake is well fed. Task completed.');
+        $('p').addClass('has-text-success');
+        $('#score').addClass('has-text-success');
+        //send successful result to backend
+    }
 }
 
 function gameOver() {

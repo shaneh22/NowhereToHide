@@ -2,7 +2,7 @@
 let voteButtonsActive = false;
 
 let createPeopleBox = (x) =>{
-    let box = $(`<div class = "box" id= "${x}"></div>`);
+    let box = $(`<div class = "box player" id= "${x}"></div>`);
     let field = $(`<div class = "field level"></div>`);
     let p = $(`<p id = "#p${x}">Player ${x}</p>`);
     let btns = $('<div class = "buttons level-right"></div>');
@@ -41,3 +41,21 @@ let createPeopleBoxes = (x) =>{
 
 $('.columns').append(createPeopleBoxes(0));
 $('.columns').append(createPeopleBoxes(1));
+
+let createChatBox = (name, text) =>{
+    let box = $(`<div class = "box message mb-4"></div>`);
+    let user = $(`<p><strong>${name}</strong></p>`);
+    let message = $(`<p>${text}</p>`);
+    box.append(user);
+    box.append(message);
+    return box;
+}
+
+let chat = $(`<div class = "level" id = "chat"><div>`);
+let textBox = $("<textarea style = 'width: 775px' class = 'textarea column level-item' rows = '2'></textarea>");
+let sendButton = $(`<button class = "button column level-item ml-2 is-info">></button>`);
+chat.append(textBox);
+chat.append(sendButton);
+$('#square').append(chat);
+
+//Max chats onscreen at one time = 4

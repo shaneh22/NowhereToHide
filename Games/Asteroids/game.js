@@ -8,7 +8,15 @@ let count = 0;
 $(document).ready(() => {
     asteroids.on('click', () => {
         count++;
-        $('#count').html(count);
+        if(count >= 20){
+            //send task completed to backend
+            $('p').removeClass('has-text-danger');
+            $('p').addClass('has-text-success');
+            $('p').html('Task completed successfully');
+        }
+        else {
+            $('#count').html(`${count} out of 20 asteroids shot.`);
+        }
         $('.asteroid').remove();
     })
 })

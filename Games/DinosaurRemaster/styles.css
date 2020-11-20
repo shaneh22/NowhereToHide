@@ -2,6 +2,7 @@
     width: 800px;
     height: 400px;
     background-color: black;
+    margin: auto;
 }
 
 #spaceship {
@@ -13,7 +14,7 @@
     top: 175px;
 }
 
-.asteroid {
+#asteroid {
     width: 125px;
     height: 125px;
     background-image: url(Asteroid.png);
@@ -24,15 +25,14 @@
     animation: left 1s infinite linear;
 }
 
-.asteroid2 {
+#asteroid2 {
     width: 125px;
     height: 125px;
     background-image: url(Asteroid.png);
     background-size: 125px 125px;
     position: absolute;
-    top: 100px;
-    left: 675px;
-    animation: left 1s infinite linear;
+    top: 400px;
+    animation: asteroid2Left 1s infinite linear;
 }
 
 .up{
@@ -87,4 +87,27 @@
         left: -125px;
         transform: rotate(120deg);
     }
+}
+
+@keyframes asteroid2Left{
+    0%{
+        left: 1175px;
+    }
+    100%{
+        left: 300px;
+        transform: rotate(120deg);
+    }
+}
+
+html {
+    background-image: url('static.png');
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+}
+h2, p{
+    text-align: center;
 }

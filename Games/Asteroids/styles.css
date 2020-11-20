@@ -2,6 +2,8 @@
     width: 800px;
     height: 400px;
     background-color: black;
+    margin:auto;
+    margin-top: 25px;
 }
 
 .asteroid {
@@ -66,4 +68,17 @@
         top: 400px;
         transform: rotate(120deg);
     }
+}
+
+html {
+    background-image: url('static.png');
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+}
+h2, p{
+    text-align: center;
 }
