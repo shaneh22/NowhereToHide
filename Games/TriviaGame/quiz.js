@@ -430,7 +430,7 @@ function renderQuiz() {
 
     $root.append(`<div id="customQuiz"></div>
                     <button id="submit">Submit Answers</button>
-                    <div id="results"></div>`)
+                    <div class = "is-size-4" id="results"></div>`)
 }
 
 function getAnswers() {
@@ -468,10 +468,12 @@ function showResults(questions, quiz, result){
 
         if(numCorrect < questions.length) {
             result.style.color = 'red';
-            result.innerHTML = "You lose!"
+            result.innerHTML = "ERR: System Failure ! Task failed! ";
+            //send failure to backend
         } else {
             result.style.color = 'green';
-            result.innerHTML = "YOU WIN!!!"
+            result.innerHTML = "System calibrated correctly! Task completed!";
+            //send success to backend
         }
     }
 }
@@ -502,7 +504,7 @@ function renderQuestions(questions, quiz) {
         }
 
         question.push(
-            '<div class="question">' + questions[i].question + '</div>'
+            '<div class="question hero is-size-4 has-text-white">' + questions[i].question + '</div>'
             + '<div class="answers">' + answers.join('') + '</div>'
         );
 
