@@ -401,6 +401,8 @@ let quizQuestions = [
 
 let randQuiz = questionSelector();
 
+let failed = false;
+
 $(function() {
     renderQuiz();
 
@@ -417,8 +419,7 @@ function questionSelector() {
     let ret_arr = new Array();
 
     for(let i = 0; i < 8; i++) {
-        let randomNum = Math.floor(Math.random() * 40);
-        console.log(randomNum)
+        let randomNum = Math.floor(Math.random() * quizQuestions.length);
         ret_arr.push(quizQuestions[randomNum])
     }
 
@@ -469,8 +470,14 @@ function showResults(questions, quiz, result){
         if(numCorrect < questions.length) {
             result.style.color = 'red';
             result.innerHTML = "ERR: System Failure ! Task failed! ";
+            failed = true;
             //send failure to backend
-        } else {
+        } 
+        else if(failed){
+            result.style.color = 'green';
+            result.innerHTML = "Nice improvement! Come back next round!";
+        }
+        else {
             result.style.color = 'green';
             result.innerHTML = "System calibrated correctly! Task completed!";
             //send success to backend
