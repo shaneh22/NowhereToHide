@@ -28,12 +28,12 @@ logInForm.addEventListener('submit', (e) => {
 
     auth.setPersistence((firebase.auth.Auth.Persistence.SESSION)).then(_ => {
         auth.signInWithEmailAndPassword(email, password).then(cred => {
-            console.log(cred.user);
             logInForm.reset();
         });
     })
 })
 
+/*
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("user is signed in!");
@@ -42,4 +42,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log("no user signed in");
     }
   });
+
+*/
 
