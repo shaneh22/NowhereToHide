@@ -63,7 +63,6 @@ export default class memoryGame {
 
     checkIfWon() {
         if (this.won == true) {
-            alert("You win!");
             return true;
         } else {
             return false;

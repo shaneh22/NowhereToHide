@@ -3,12 +3,14 @@ import memoryGame from './memory.js';
 let game = new memoryGame();
 let clicks = 0; 
 var firstMove;
-let gameHasStarted = false;
+let canClick = false;
+let flips = 10;
+let pString = `<p class="has-text-danger is-size-4">You've got ${flips} flips left.</p>`;
 
 export const renderGameBoard = function(game) {
     return `
     <span id=board>
-    <h2>Score: ${game.score}</h2>
+    ${pString}
     <div class=card-grid>
         <div class=card id=0>
             <div class=card-front id=${game.board[0]} value=0>
@@ -151,14 +153,18 @@ export const loadIntoDOM = function() {
     setTimeout (function onTick() {
         $("#board").replaceWith(renderGameBoard(game));
         loadImages();
-        gameHasStarted = true;
+        canClick = true;
     }, 8000)
 
     document.addEventListener('click', function(event) {
         var card = event.target.parentElement;
-        if(!gameHasStarted || isNaN(parseInt(card.id))){
+        let id = parseInt(card.id);
+
+        if(!canClick || isNaN(id) || card.children[1] == undefined){
             return;
         }
+
+        console.log('clicked');
 
         var cardFront = card.children[0];
         var cardBack = card.children[1];
@@ -171,15 +177,35 @@ export const loadIntoDOM = function() {
         } else if (clicks == 2) {
             cardFront.innerHTML = cardBack.innerHTML; 
             game.move(firstMove.id, card.id);
-            clicks = 0; 
+            clicks = 0;
+            flips --;
+            canClick = false;
+
+            if(!game.checkIfWon()){
+                if(flips <= 0){
+                    pString = `<p class="has-text-danger is-size-4">You have no idea where you are. Task failed. </p>`;
+                    //Send task failure to backend
+                }
+                else{
+                    pString = `<p class="has-text-danger is-size-4">You've got ${flips} flips left.</p>`;
+                }
+            }
+
             setTimeout(function afterShowCard() {
                 $("#board").replaceWith(renderGameBoard(game));
                 loadImages();
                 showMatched();
+                canClick = true;
             }, 1000)
 
             setTimeout(function checkWin() {
-                game.checkIfWon();
+                if(game.checkIfWon()){
+                    pString = `<p class="has-text-success is-size-4">You're on the right path! Task Completed!</p>`;
+                    $("#board").replaceWith(renderGameBoard(game));
+                    loadImages();
+                    showMatched();
+                    //Send successful result to backend
+                }
             }, 3000)
         }
     })
