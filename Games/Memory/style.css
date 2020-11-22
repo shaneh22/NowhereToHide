@@ -3,8 +3,8 @@
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
-    width: 200px;
-    height:200px;
+    width: 50%;
+    height: 100%;
     perspective: 1000px;
 }
 
