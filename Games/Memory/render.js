@@ -3,6 +3,7 @@ import memoryGame from './memory.js';
 let game = new memoryGame();
 let clicks = 0; 
 var firstMove;
+let gameHasStarted = false;
 
 export const renderGameBoard = function(game) {
     return `
@@ -150,10 +151,15 @@ export const loadIntoDOM = function() {
     setTimeout (function onTick() {
         $("#board").replaceWith(renderGameBoard(game));
         loadImages();
+        gameHasStarted = true;
     }, 8000)
 
     document.addEventListener('click', function(event) {
         var card = event.target.parentElement;
+        if(!gameHasStarted || isNaN(parseInt(card.id))){
+            return;
+        }
+
         var cardFront = card.children[0];
         var cardBack = card.children[1];
 
